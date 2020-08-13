@@ -1,11 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 
 // import { Container } from './styles';
 
 const SearchInput = ({placeholder, onSubmit}) => {
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState('');
 
   const handleChangeText = (newLocation) => {
     setLocation(newLocation);
@@ -51,3 +52,12 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+SearchInput.propTypes = {
+  placeholder: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
+}
+
+SearchInput.defaultProps = {
+  placeholder: "Search any city",
+}

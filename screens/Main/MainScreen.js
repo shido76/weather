@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator, StatusBar, View, KeyboardAvoidingView, ImageBackground, Text } from 'react-native';
 import api from '../../config/api'
-import { round } from '../../lib/utils'
+import { round, getWeatherImage, getWeatherIcon } from '../../lib/utils'
 import SearchInput from '../../components/SearchInput'
 
 import styles from './styles';
@@ -48,40 +48,6 @@ const MainScreen = () => {
     }
   }
 
-  const getWeatherImage = weather => {
-    const images = {
-      Clear: require('../../assets/images/clear.jpg'),
-      Hail: require('../../assets/images/hail.jpg'),
-      'Heavy Cloud': require('../../assets/images/heavy-cloud.jpg'),
-      'Light Cloud': require('../../assets/images/light-cloud.jpg'),
-      'Heavy Rain': require('../../assets/images/heavy-rain.jpg'),
-      'Light Rain': require('../../assets/images/light-rain.jpg'),
-      Showers: require('../../assets/images/showers.jpg'),
-      Sleet: require('../../assets/images/sleet.jpg'),
-      Snow: require('../../assets/images/snow.jpg'),
-      ThunderStorm: require('../../assets/images/thunderstorm.jpg')
-    };
-
-    return images[weather];
-  }
-
-  const getWeatherIcon = weather => {
-    const icons = {
-      Clear: '☀️',
-      Hail: '⛆',
-      'Heavy Cloud': '☁️',
-      'Light Cloud': '⛅',
-      'Heavy Rain': '⛈️',
-      'Light Rain': '🌧️',
-      Showers: '🌧️',
-      Sleet: '🌨️',
-      Snow: '❄️',
-      Thunder: '⛈️'
-    };
-
-    return icons[weather];
-  }
-
   return (
     <KeyboardAvoidingView style={styles.container}>
       <StatusBar barStyle="light-content" />
@@ -109,7 +75,7 @@ const MainScreen = () => {
                   </>
                 )}
 
-              <SearchInput placeholder="Search any city" onSubmit={handleChangeLocation} />
+              <SearchInput onSubmit={handleChangeLocation} />
             </>
           )}
         </View>
